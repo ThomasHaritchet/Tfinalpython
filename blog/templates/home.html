@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>Bienvenido a nuestro Blog</h1>
+
+    <!-- Mostrar enlaces si el usuario no está autenticado -->
+    {% if not user.is_authenticated %}
+        <p><a href="{% url 'login' %}">Iniciar sesión</a></p>
+        <p><a href="{% url 'signup' %}">Registrarse</a></p>
+    {% else %}
+        <!-- Mostrar enlaces si el usuario está autenticado -->
+        <p>Hola, {{ user.username }}! </p>
+        <p><a href="{% url 'blog_list' %}">Ver Blogs</a></p>
+        <p><a href="{% url 'create_blog' %}">Crear un nuevo Blog</a></p>
+        <p><a href="{% url 'about' %}">Acerca de</a></p>
+        <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+    {% endif %}
+</body>
+</html>
